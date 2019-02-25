@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library.API.Services
 {
-    interface ILibraryRepository
+    public interface ILibraryRepository
     {
         IEnumerable<FriendConnection> GetAllConnections();
 
@@ -29,8 +29,6 @@ namespace Library.API.Services
         void DeleteBookForFriendConnection(Guid friendId, Book book);
 
         void UpdateBook(Book book);
-
-        bool FriendConnectionExists(Guid id);
 
         bool SaveChanges();
 

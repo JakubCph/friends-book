@@ -4,14 +4,16 @@ using Library.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Library.API.Migrations
 {
     [DbContext(typeof(LibraryDBContext))]
-    partial class LibraryDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190223205952_Datetime")]
+    partial class Datetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,9 @@ namespace Library.API.Migrations
 
                     b.Property<string>("Author");
 
-                    b.Property<Guid>("FriendConnectionId");
+                    b.Property<Guid?>("FriendConnectionId");
+
+                    b.Property<Guid>("FriendId");
 
                     b.Property<string>("Title");
 
@@ -61,8 +65,7 @@ namespace Library.API.Migrations
                 {
                     b.HasOne("Library.API.Entities.FriendConnection")
                         .WithMany("FavouriteReads")
-                        .HasForeignKey("FriendConnectionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FriendConnectionId");
                 });
 #pragma warning restore 612, 618
         }

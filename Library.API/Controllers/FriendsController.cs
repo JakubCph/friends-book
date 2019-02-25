@@ -1,4 +1,5 @@
 ﻿using Library.API.Entities;
+using Library.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,13 +8,30 @@ using System.Threading.Tasks;
 
 namespace Library.API.Controllers
 {
+    [Route("api/friends")]
+    [ApiController]
     public class FriendsController : Controller
     {
-        private readonly LibraryDBContext _context;
+        private readonly ILibraryRepository _repository;
 
-        public FriendsController(LibraryDBContext context)
+        public FriendsController(ILibraryRepository repository)
         {
-            _context = context;
+            _repository = repository;
+        }
+
+        // GET api/friends
+        [HttpGet]
+        public IActionResult GetFriends()
+        {
+            var FriendsFromRepo = _repository.GetAllConnections();
+            return Ok(FriendsFromRepo);
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            return "value";
         }
     }
 }

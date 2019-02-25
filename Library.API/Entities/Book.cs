@@ -7,7 +7,7 @@ namespace Library.API.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid FriendId { get; set; }
+        public Guid FriendConnectionId { get; set; }
 
         public string Author { get; set; }
         
